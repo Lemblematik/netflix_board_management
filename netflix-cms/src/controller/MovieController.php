@@ -1,6 +1,7 @@
 <?php
 namespace SInfPaKamd\WESS20\controller;
 
+use phpDocumentor\Reflection\Types\This;
 use SInfPaKamd\WESS20\model\MovieModel;
 use SInfPaKamd\WESS20\model\Route;
 use  SInfPaKamd\WESS20\view\movie;
@@ -30,6 +31,7 @@ class MovieController
 
 
 
+
         //if url is movie/get
         //include 'view/movielist.php
         if((strcmp($action[1] , "get") == 0)&& empty($param[1])){
@@ -42,8 +44,7 @@ class MovieController
         }
         elseif((strcmp($action[1] , "get") == 0)&& !empty($param[1])){
             //getModellView($param[1])
-            global $movie;
-            $movie = $this->movieModel->getMovie($action[1]);
+            $movie = $this->movieModel->getMovie($param[1]);
             include (dirname(dirname(__DIR__)) . '/src/view/movie.php');
             //header('Location: /netflix-cms/src/view/movie.php');
         }
@@ -51,7 +52,14 @@ class MovieController
             header('Location: /netflix-cms/src/view/add.php');
         }
         elseif((strcmp($action[1] , "add") == 0)&& (strcmp($param[1] , "success") == 0)){
-            header('Location: /netflix-cms/src/view/add-success.php');
+            header('Location: /netflix-cms/src/view/successfull.php');
+        }
+        elseif((strcmp($action[1] , "edit") == 0)&& !empty($param[1])){
+            $movie = $this->movieModel->getMovie($param[1]);
+            include (dirname(dirname(__DIR__)) . '/src/view/edit.php');
+        }
+        elseif((strcmp($action[1] , "delete") == 0)&& !empty($param[1])){
+            header('Location: /netflix-cms/src/view/successfull.php');
         }
         else{
             header('Location: /netflix-cms/src/view/not-found.php');

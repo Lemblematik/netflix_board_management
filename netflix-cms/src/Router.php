@@ -29,25 +29,26 @@ class Router
     public function run($uri)
     {
 
+
         // Get defaults
-        echo $uri;
-        echo "<br>";
+        //echo $uri;
+        //echo "<br>";
         $uri_parts = explode('?', $uri);
         // Get path like /lng/controller/action/param1/param2/.../...
         $path = $uri_parts[0];
-        echo $path;
-        echo "<br>";
+        //echo $path;
+        //echo "<br>";
 
        // $path_parts = explode('/', $path);
 
         $querystring = $uri_parts[1];
-        echo $querystring;
-        echo "<br>";
+        //echo $querystring;
+        //echo "<br>";
 
         $qs_parts = explode('&', $querystring);
-        $ctrl = $qs_parts[0];
-        echo $ctrl;
-        echo "<br>";
+        //$ctrl = $qs_parts[0];
+        //echo $ctrl;
+        //echo "<br>";
         /*
         $first_kv_param = explode('=', $ctrl);
         echo "key:" . $first_kv_param[0];
@@ -57,12 +58,12 @@ class Router
         */
 
         $action = $qs_parts[1];
-        echo  $action;
-        echo "<br>";
+        //echo  $action;
+        //echo "<br>";
 
         $param = $qs_parts[2];
-        echo  $param;
-        echo "<br>";
+        //echo  $param;
+        //echo "<br>";
 
         $route = new Route($qs_parts[0],$qs_parts[1],$qs_parts[2]);
 
@@ -75,6 +76,9 @@ class Router
         elseif (strcmp($ctrl[1] , "viewer") == 0){
             $controller = new ViewerController();
             $controller->run($route);
+        }
+        elseif (strcmp($ctrl[1] , "login") == 0){
+            header('Location: /netflix-cms/src/view/login.php');
         }
         else{
             header('Location: /netflix-cms/src/view/not-found.php');
