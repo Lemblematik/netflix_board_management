@@ -13,7 +13,7 @@
         <?php echo $movie->getDescription();?>
         </textarea>
     <br>
-    Publishing Date:  <input type="date" size="60" name="publishingDate"/> <br>
+    Publishing Date:  <input type="date" size="60" name="publishingDate" value="<?php echo $movie->getPublishDate();?>"/> <br>
     <input type="submit" value="Update Movie Infos">
 
 </form>

@@ -33,32 +33,39 @@ background-color: #dddddd;
         <th>Action</th>
     </tr>
     <?php
-    foreach ($result as $key => $value) {
-        if(array_key_exists('see', $_POST)) {
-            header('Location: /netflix-cms/index.php?x=movie&y=get&z=' . $value->getMovieId());
+
+    for ($i = 1; $i<=count($result); $i++){
+
+
+        if(array_key_exists("see$i", $_POST)) {
+            header('Location: /netflix-cms/index.php?x=movie&y=get&z=' . $i);
         }
-        elseif (array_key_exists('edit', $_POST)) {
-            header('Location: /netflix-cms/index.php?x=movie&y=edit&z=' . $value->getMovieId());
+        elseif (array_key_exists("edit$i", $_POST)) {
+            header('Location: /netflix-cms/index.php?x=movie&y=edit&z=' .$i);
         }
-        elseif (array_key_exists('delete', $_POST)) {
-            header('Location: /netflix-cms/index.php?x=movie&y=delete&z=' . $value->getMovieId());
+        elseif (array_key_exists("delete$i", $_POST)) {
+            header('Location: /netflix-cms/index.php?x=movie&y=delete&z=' .$i);
         }
+    }
+    foreach ($result as $value) {
         echo '<tr>';
         echo '<td>' . $value->getName() . '</td>';
         echo '<td>' . $value->getProducerName() . '</td>';
         echo '<td>' . $value->getPublishDate() . '</td>';
         echo '<td>' .
             '<form method="post">
+
+
                 <input  formaction="" type="submit"
-                class="button" name="see"
+                class="button" name="see'.$value->getMovieId().'"
                 value="see"> <br>'
                 .
                 '<input  formaction="" type="submit"
-                class="button" name="edit"
+                class="button" name="edit'.$value->getMovieId().'"
                 value="edit"> <br>'
-                .
+                  .
                 '<input  formaction="" type="submit"
-                class="button" name="delete"
+                class="button" name="delete'.$value->getMovieId().'"
                 value="delete"> <br>'
                 .
             '</form>'

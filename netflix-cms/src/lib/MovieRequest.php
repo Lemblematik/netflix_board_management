@@ -1,11 +1,11 @@
 <?php
+
+
 namespace SInfPaKamd\WESS20\lib;
 
 
-class Movie
+class MovieRequest
 {
-    //movieid
-    private $movieId;
     //name
     private $name;
     //description
@@ -17,15 +17,13 @@ class Movie
 
     /**
      * Movie constructor.
-     * @param $movieId
      * @param $name
      * @param $description
      * @param $producerName
      * @param $publishDate
      */
-    public function __construct($movieId, $name, $description, $producerName, $publishDate)
+    public function __construct($name, $description, $producerName, $publishDate)
     {
-        $this->movieId = $movieId;
         $this->name = $name;
         $this->description = $description;
         $this->producerName = $producerName;
@@ -33,24 +31,6 @@ class Movie
     }
 
 
-
-    //Factory Pattern
-
-    /**
-     * @return mixed
-     */
-    public function getMovieId()
-    {
-        return $this->movieId;
-    }
-
-    /**
-     * @param mixed $movieId
-     */
-    public function setMovieId($movieId)
-    {
-        $this->movieId = $movieId;
-    }
 
     /**
      * @return mixed
