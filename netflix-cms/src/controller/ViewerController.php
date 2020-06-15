@@ -38,9 +38,9 @@ class ViewerController
             header('Location: /netflix-cms/src/view/add-viewer.php');
         }
         elseif((strcmp($action[1] , "add") == 0)&& (strcmp($param[1] , "success") == 0)){
-
             header('Location: /netflix-cms/src/view/successfull.php');
-        }else {
+        }
+        else {
             header('Location: /netflix-cms/src/view/not-found.php');
         }
     }

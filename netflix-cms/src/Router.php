@@ -80,6 +80,9 @@ class Router
         elseif (strcmp($ctrl[1] , "login") == 0){
             header('Location: /netflix-cms/src/view/login.php');
         }
+        elseif (strcmp($ctrl[1] , "welcome") == 0){
+            header('Location: /netflix-cms/src/view/welcome.php');
+        }
         else{
             header('Location: /netflix-cms/src/view/not-found.php');
         }

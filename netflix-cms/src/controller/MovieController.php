@@ -30,10 +30,6 @@ class MovieController
 
         $action = explode('=',$route->getAction());
         $param = explode('=',$route->getParam());
-
-
-
-
         //if url is movie/get
         //include 'view/movielist.php
         if((strcmp($action[1] , "get") == 0)&& empty($param[1])){
@@ -55,8 +51,12 @@ class MovieController
             include (dirname(dirname(__DIR__)) . '/src/view/add.php');
         }
         elseif((strcmp($action[1] , "add") == 0)&& (strcmp($param[1] , "success") == 0)){
-
+            //nosuccess
             include (dirname(dirname(__DIR__)) . '/src/view/successfull.php');
+            //header('Location: /netflix-cms/src/view/successfull.php');
+        }
+        elseif((strcmp($action[1] , "add") == 0)&& (strcmp($param[1] , "nosuccess") == 0)){
+            include (dirname(dirname(__DIR__)) . '/src/view/no-success.php');
             //header('Location: /netflix-cms/src/view/successfull.php');
         }
         elseif((strcmp($action[1] , "edit") == 0)&& !empty($param[1])){

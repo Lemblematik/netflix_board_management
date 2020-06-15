@@ -1,29 +1,27 @@
 <?php
+
+
 namespace SInfPaKamd\WESS20\lib;
 
-class Viewer
-{
 
-    private $id;
+class ViewerRequest
+{
     //username
     private $username;
     //password
     private $password;
-    //token
+
 
     /**
      * Viewer constructor.
-     * @param $id
      * @param $username
      * @param $password
      */
-    public function __construct($id, $username, $password)
+    public function __construct($username, $password)
     {
-        $this->id = $id;
         $this->username = $username;
         $this->password = $password;
     }
-
 
     /**
      * @return mixed
@@ -56,23 +54,4 @@ class Viewer
     {
         $this->password = $password;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-
-
 }

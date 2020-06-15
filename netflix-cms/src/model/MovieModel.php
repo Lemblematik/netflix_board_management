@@ -7,10 +7,6 @@ use SInfPaKamd\WESS20\lib\Movie;
 
 class MovieModel implements IMovie
 {
-
-
-
-
     public function getAllMovies()
     {
         //sql anfragen absetzen
@@ -34,21 +30,28 @@ class MovieModel implements IMovie
         //same : "select * from movie where id = '{$movieId}' limit 1";
         // return same
         $data = new DB();
-        $value = $data->queryByAlias('SELECT * FROM movie WHERE movieId=' . $movieId);
-        echo $value->name;
+        $value = $data->getMovieData($movieId);
         return new Movie($value->movieId, $value->name, $value->description, $value->producerName, $value->publishDate);
     }
         public function addMovie($movieRequest)
     {
-        //same
         // TODO: Implement addMovie() method.
         $data = new DB();
-        $isSuccess = $data->postData($movieRequest->getName(),$movieRequest->getDescription(),$movieRequest->getProducerName(),$movieRequest->getPublishDate());
+        $isSuccess = $data->postMovieData($movieRequest->getName(),$movieRequest->getDescription(),$movieRequest->getProducerName(),$movieRequest->getPublishDate());
         return $isSuccess;
     }
     public function deleteMovie($movieId)
     {
-        //delete "delete from movie where id = '{$movieId}'
+        $data = new DB();
+        $isSuccess = $data->deleteMovie($movieId);
+        return $isSuccess;
+    }
+
+    public function updateMovie(Movie $movieToUpdate)
+    {
+        $data = new DB();
+        $isSuccess = $data->updateMovieData($movieToUpdate);
+        return $isSuccess;
 
     }
 }

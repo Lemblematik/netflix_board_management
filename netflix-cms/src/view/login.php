@@ -2,14 +2,26 @@
 <html>
 <body>
 <?php
+use SInfPaKamd\WESS20\lib\ViewerRequest;
+use SInfPaKamd\WESS20\model\ViewerModel;
+
+//session_start();
 //check if post[username], and post[password] not empty
-//sonst define new viewer with post[username], and post[password]
-//check in db if exist
-//then enable access with token to welcome.php
-//sonst not member register
-
-
-//if post[registrate] open
+if (!empty($_POST['username']) && !empty($_POST['password'])){
+    echo $_POST['username'];
+    echo $_POST['password'];
+    /*
+    $viewerModel = new ViewerModel();
+    $viewerModel = new ViewerModel();
+    $viewerRequest = new ViewerRequest($_POST['username'],$_POST['password']);
+    $isExist = $viewerModel->checkIfExist($viewerRequest);
+    if ($isExist){
+        include (dirname(dirname(__DIR__)) . '/src/view/welcome.php');
+    }else{
+        echo "password or username is not correct";
+    }
+    */
+}
 ?>
 
 <form action="welcome.php" method="post">

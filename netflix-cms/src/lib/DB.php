@@ -33,14 +33,11 @@ class DB
         return $data->fetch();
     }
 
-    public function postData($name,$description,$producerName,$publishDate){
-        /*
-         'INSERT INTO movie(name,description,producerName,publishDate)
-                VALUES
-         */
+    public function postMovieData($name, $description, $producerName, $publishDate){
         try {
             $stmt = $this->connection->prepare("INSERT INTO movie(name,description,producerName,publishDate) 
         VALUES (:name, :description, :producerName, :publishDate)");
+            //uniqid()
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':description', $description);
             $stmt->bindParam(':producerName', $producerName);
@@ -52,5 +49,56 @@ class DB
         return true;
     }
 
+    public function postViewerData($username, $password){
+        try {
+            $stmt = $this->connection->prepare("INSERT INTO movie(username,password) 
+        VALUES (:username, :password)");
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':password', $password);
+            $stmt->execute();
+            echo "gut";
+        }catch (\PDOException $exception){
+            return false;
+        }
+        return true;
+    }
+
+    public function updateMovieData(Movie $movieToUpdate)
+    {
+        try {
+            $stmt = $this->connection->prepare("UPDATE movie SET
+            name=?,
+            description=?,
+            producerName=?,
+            publishDate=?
+            WHERE movieId=?");
+            $stmt->execute([$movieToUpdate->getName(), $movieToUpdate->getDescription(), $movieToUpdate->getProducerName(),$movieToUpdate->getPublishDate(), $movieToUpdate->getMovieId()]);
+        }catch (\PDOException $exception){
+            return false;
+        }
+        return true;
+    }
+
+    public function deleteMovie($movieId)
+    {
+        try {
+            $stmt = $this->connection->prepare("DELETE FROM movie 
+            WHERE movieId=?");
+            $stmt->execute([$movieId]);
+        }catch (\PDOException $exception){
+            return false;
+        }
+        return true;
+    }
+
+    public function getMovieData($movieId)
+    {
+        try {
+            $stmt = $this->connection->query("SELECT * FROM movie WHERE movieId=" . $movieId .";");
+            return $stmt->fetch();
+        }catch (\PDOException $exception){
+            echo "failed connection " . $exception->getMessage();
+        }
+    }
 
 }
