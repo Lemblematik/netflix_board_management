@@ -1,36 +1,20 @@
 <?php
+define('DS', DIRECTORY_SEPARATOR);
+define('ROOT', dirname(dirname(__FILE__)));
+define('VIEWS_PATH', ROOT.DS.'netflix-cms'.DS.'src'.DS.'views');
+
+
 error_reporting(E_ALL);
 ini_set("display_errors","On");
-
+require_once(ROOT.DS.'netflix-cms'.DS.'src'.DS.'library'.DS.'init.php');
 require dirname(__DIR__) . '\netflix-cms\vendor\autoload.php';
-use SInfPaKamd\WESS20\Router as Router;
+require dirname(__DIR__) . '\netflix-cms\src\config\config.php';
 
 
-
-use SInfPaKamd\WESS20\controller\MovieController as MovieController;
-use SInfPaKamd\WESS20\controller\ViewerController as ViewerController;
-
-
-
-/*
-$route = new Router();
-//initialise and define Router to controller
-$route->add("/movies", MovieController::class);
-$route->add("/viewers", ViewerController::class);
-
-$controller = $route->routeAll();
-$controller->run();
-
-//initialise and define Router to viewer Controller
-
-//initialise default route for login
-
-// then run not-found.php
-*/
 $url = $_SERVER['REQUEST_URI'];
+App::run($url);
 
-$route = new Router($url);
-$route->run($url);
+
 
 
 
