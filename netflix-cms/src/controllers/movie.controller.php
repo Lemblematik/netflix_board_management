@@ -20,4 +20,60 @@ class MovieController extends Controller
         }
         */
     }
+
+    public function add(){
+        if ( $_POST ){
+            $result = $this->model->save($_POST);
+            if ( $result ){
+                Session::setFlash('Page was saved.');
+            } else {
+                Session::setFlash('Error.');
+            }
+            Router::redirect('/netflix-cms/index.php?x=movie/view');
+        }
+    }
+
+    public function edit() {
+        //if save values
+        if ( $_POST ){
+            $id = isset($_POST['movieId']) ? $_POST['movieId'] : null;
+            $result = $this->model->save($_POST, $id);
+            if ( $result ){
+                Session::setFlash('Page was saved.');
+            } else {
+                Session::setFlash('Error.');
+            }
+            Router::redirect('/netflix-cms/index.php?x=movie/view');
+        }
+
+        //if call edit view
+        if ( isset($this->param) ){
+            $this->data['movies'] = $this->model->getById($this->param);
+        } else {
+            Session::setFlash('Wrong page id.');
+            Router::redirect('/netflix-cms/index.php?x=movie/view');
+        }
+    }
+    public function delete(){
+        if ( isset($this->param) ){
+            $result = $this->model->delete($this->param);
+            if ( $result ){
+                Session::setFlash('Page was deleted.');
+            } else {
+                Session::setFlash('Error.');
+            }
+        }
+        Router::redirect('/netflix-cms/index.php?x=movie/view');
+    }
+
+    public function see(){
+        if ( isset($this->param) ){
+            $this->data['movies'] = $this->model->getById($this->param);
+        } else {
+            Session::setFlash('Wrong page id.');
+            Router::redirect('/netflix-cms/index.php?x=movie/view');
+        }
+    }
+
+
 }

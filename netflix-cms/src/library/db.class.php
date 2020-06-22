@@ -23,6 +23,15 @@ class DB
         return $data;
     }
 
+    public function updateAndSaveData($sql, $data){
+        $stmt = $this->connection->prepare($sql);
+        return $stmt->execute($data);
+    }
+
+
+
+
+
 
 
 }
