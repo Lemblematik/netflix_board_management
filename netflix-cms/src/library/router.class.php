@@ -9,6 +9,7 @@ class Router
     protected $param;
     protected $route;
 
+
     /**
      * @return mixed
      */
@@ -125,6 +126,12 @@ class Router
     {
         $this->param = $param;
     }
+
+    public static function redirect($location)
+    {
+        header("Location: $location");
+    }
+
 
 
 

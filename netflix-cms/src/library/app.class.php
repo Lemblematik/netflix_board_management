@@ -3,6 +3,7 @@
 class App
 {
     public static $router;
+    public static $db;
 
     /**
      * @return mixed
@@ -15,8 +16,20 @@ class App
     {
         self::$router = new Router($url);
 
+        $dsn = 'mysql:host=' . Config::get('db.host') . ';dbname=' . Config::get('db.db_name');
+        self::$db = new DB($dsn, Config::get('db.user'), Config::get('db.password'));
+
+
         $controller_class = ucfirst(self::$router->getController()).'Controller';
         $controller_method = strtolower(self::$router->getAction());
+
+        $layout = self::$router->getRoute();
+        if ( $layout == 'admin' && Session::get('role') != 'admin' ){
+            if ( $controller_method != 'login' ){
+                Router::redirect('/netflix-cms/index.php?x=employee/login');
+            }
+        }
+
         // Calling controller's method
         $controller_object = new $controller_class();
         if ( method_exists($controller_object, $controller_method) ){

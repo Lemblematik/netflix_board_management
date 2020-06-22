@@ -11,6 +11,7 @@ spl_autoload_register(function ($class_name){
     } elseif ( file_exists($controllers_path) ){
         require_once($controllers_path);
     } elseif ( file_exists($model_path) ){
+        echo "passssss";
         require_once($model_path);
     } else {
         throw new Exception('Failed to include class: '.$class_name);
