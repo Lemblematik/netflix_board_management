@@ -44,7 +44,7 @@ class MovieController extends Controller
     public function edit() {
         //if save values
         if ( $_POST ){
-            $id = isset($_POST['movieId']) ? $_POST['movieId'] : null;
+            $id = isset($_POST['movieId']) ? $this->e($_POST['movieId']) : null;
             $result = $this->model->save($_POST, $id);
             if ( $result ){
                 Session::setFlash('Page was saved.');
@@ -82,6 +82,13 @@ class MovieController extends Controller
             Router::redirect('/netflix-cms/index.php?x=movie/view');
         }
     }
+
+    public function e($string) {
+        return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+    }
+
+
+
 
 
 }

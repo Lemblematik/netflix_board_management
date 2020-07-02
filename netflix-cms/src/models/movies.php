@@ -19,14 +19,19 @@ class Movies extends Model {
         if ( !isset($data['name']) || !isset($data['producerName']) || !isset($data['description']) || !isset($data['publishDate']) ){
             return false;
         }
+        $name = $this->e($data['name']);
+        $producerName = $this->e($data['producerName']);
+        $description = $this->e($data['description']);
+        $publishDate = $this->e($data['publishDate']);
+
 
 
         if ( !$id ){ // Add new record
             $to_inserted_Data = [
-                'name' => $data['name'],
-                'producerName' => $data['producerName'],
-                'description' => $data['description'],
-                'publishDate' => $data['publishDate']
+                'name' => $name,
+                'producerName' => $producerName,
+                'description' => $description,
+                'publishDate' => $publishDate
             ];
             $sql = "
                 insert into movie (name,producerName,description,publishDate)
@@ -37,10 +42,10 @@ class Movies extends Model {
         } else { // Update existing record
             $to_updated_Data = [
                 'movieId' => $id,
-                'name' => $data['name'],
-                'producerName' => $data['producerName'],
-                'description' => $data['description'],
-                'publishDate' => $data['publishDate']
+                'name' => $name,
+                'producerName' => $producerName,
+                'description' => $description,
+                'publishDate' => $publishDate
             ];
             $sql = "
                 update movie
@@ -59,4 +64,9 @@ class Movies extends Model {
         $sql = "delete from movie where movieId = ?";
         return  App::$db->updateAndSaveData($sql,$id);
     }
+
+    public function e($string) {
+        return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+    }
+
 }

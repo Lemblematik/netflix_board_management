@@ -25,12 +25,15 @@ class EmployeeController extends Controller
             }
             Router::redirect('/netflix-cms/index.php?x=movie/view');
         }
-
     }
 
     public function logout(){
         Session::destroy();
         Router::redirect('/netflix-cms/index.php?x=employee/login');
+    }
+
+    public function e($string) {
+        return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
     }
 
 
