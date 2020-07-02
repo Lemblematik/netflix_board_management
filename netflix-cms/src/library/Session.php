@@ -1,4 +1,5 @@
 <?php
+namespace PaulKamdem\WESS20\library;
 
 class Session {
     protected static $flash_message;

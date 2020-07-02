@@ -1,4 +1,12 @@
 <?php
+namespace PaulKamdem\WESS20\controllers;
+
+use PaulKamdem\WESS20\library\Controller as Controller;
+use PaulKamdem\WESS20\models\Movies as Movies;
+use PaulKamdem\WESS20\library\Router as Router;
+use PaulKamdem\WESS20\library\Session as Session;
+
+
 class MovieController extends Controller
 {
 

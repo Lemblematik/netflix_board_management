@@ -1,6 +1,9 @@
 <?php
+namespace PaulKamdem\WESS20\library;
 //view need data, which are coming from controller
 //and path
+use PHPUnit\Framework\Exception;
+
 class View
 {
     protected $data;

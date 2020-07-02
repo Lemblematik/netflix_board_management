@@ -1,4 +1,6 @@
 <?php
+
+namespace PaulKamdem\WESS20\library;
 // need model, data
 class Controller
 {

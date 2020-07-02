@@ -1,5 +1,5 @@
 <?php
-
+namespace PaulKamdem\WESS20\library;
 
 class Router
 {
@@ -131,9 +131,5 @@ class Router
     {
         header("Location: $location");
     }
-
-
-
-
 
 }

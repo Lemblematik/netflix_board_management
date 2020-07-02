@@ -1,5 +1,9 @@
 <?php
 
+
+namespace PaulKamdem\WESS20\library;
+
+
 class Config
 {
     protected static $settings = array();

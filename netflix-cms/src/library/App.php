@@ -1,5 +1,9 @@
 <?php
 
+
+namespace PaulKamdem\WESS20\library;
+
+
 class App
 {
     public static $router;
@@ -48,6 +52,7 @@ class App
         $layout_view_object = new View(compact('content'),$layout_path);
         echo $layout_view_object->render();
     }
+
 
 
 }

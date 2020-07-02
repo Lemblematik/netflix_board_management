@@ -1,4 +1,11 @@
 <?php
+
+
+namespace PaulKamdem\WESS20\config;
+
+
+use PaulKamdem\WESS20\library\Config as Config;
+
 Config::set('site_name', 'NETFLIX CMS');
 Config::set('default_controller', 'movie');
 Config::set('default_action', 'index');

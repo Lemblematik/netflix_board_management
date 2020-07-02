@@ -1,4 +1,7 @@
 <?php
+namespace PaulKamdem\WESS20\library;
+use PDO;
+use PDOException;
 
 class DB
 {
@@ -27,11 +30,6 @@ class DB
         $stmt = $this->connection->prepare($sql);
         return $stmt->execute($data);
     }
-
-
-
-
-
 
 
 }

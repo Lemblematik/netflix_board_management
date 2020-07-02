@@ -1,4 +1,7 @@
 <?php
+namespace PaulKamdem\WESS20\models;
+use PaulKamdem\WESS20\library\Model as Model;
+use PaulKamdem\WESS20\library\App as App;
 class Movies extends Model {
     public function getList(){
         $sql = 'SELECT * FROM movie';
@@ -56,8 +59,4 @@ class Movies extends Model {
         $sql = "delete from movie where movieId = ?";
         return  App::$db->updateAndSaveData($sql,$id);
     }
-
-
-
-
 }
