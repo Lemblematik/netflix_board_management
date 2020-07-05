@@ -18,7 +18,6 @@ class Session {
     }
 
     //for autorisation
-
     public static function set($key, $value){
         $_SESSION[$key] = $value;
     }

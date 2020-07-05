@@ -15,9 +15,10 @@ class DB
         try {
             $this->connection = new PDO($dsn,$user,$password);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "successful";
+            Session::setFlash("Connection successful");
         }catch (PDOException $exception){
-            echo "failed connection " . $exception->getMessage();
+
+            Session::setFlash("failed connection: " . $exception->getMessage());
         }
     }
 
